@@ -21,13 +21,15 @@ app.post('/', async (req: Request, res: Response) => {
 
     const aiResponse = await openAi.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: 'Hello, chatGPT' }],
+      messages: [{ role: "user", content: content }],
     })
 
     const response = aiResponse.data.choices[0].message?.content
 
-    res.status(200).json({ aiResponse: response, ok: true })
+    res.status(200).json({ response })
   } catch (error) {
-    res.status(500).json({ error, ok: false })
+    res.status(500).send(error)
   }
 })
+
+app.listen(8000, () => console.log('Server has started on port http://localhost:8000'))
