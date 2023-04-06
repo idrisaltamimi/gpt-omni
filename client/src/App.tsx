@@ -1,7 +1,7 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import { useCopyText, useSortCode } from "./hooks"
+import { useCopyText, useSortCode } from './hooks'
 
 const App = () => {
   const [input, setInput] = useState('')
@@ -48,8 +48,7 @@ const App = () => {
   // const { isCopied, handleCopyClick } = useCopyText(rest.join('\n'))
 
   const [aiResponseArr] = useSortCode(aiResponse)
-
-  // console.log(aiResponseArr)
+  let isCode = false
 
   return (
     <main className='m-6'>
@@ -70,21 +69,24 @@ const App = () => {
           Send Prompt
         </button>
       </form>
-      <div className='bg-[#f8f8ff] rounded-md p-4'>
 
-        <div className="flex justify-between">
-
-          {/* <h3>{language}</h3>
-          <button
-            onClick={handleCopyClick}
-          >
-            {isCopied ? 'Copied' : 'Copy code'}
-          </button> */}
-        </div>
-        <SyntaxHighlighter language="javascript" style={docco}>
-          {aiResponse}
-        </SyntaxHighlighter>
-      </div>
+      {aiResponse !== '' && aiResponse.split('\n').map((el, i) => {
+        if (el === '') return ''
+        if (el === '```') {
+          isCode = !isCode
+          return ''
+        }
+        if (el.split(' ').includes('code:') && aiResponse.split('\n')[i + 2] === '```') {
+          return <div>{el.split(' ')[0]}</div>
+        }
+        return (
+          isCode ? (
+            <SyntaxHighlighter language='javascript' style={docco}>{el}</SyntaxHighlighter>
+          ) : (
+            <p>{el}</p>
+          )
+        )
+      })}
     </main>
   )
 }
