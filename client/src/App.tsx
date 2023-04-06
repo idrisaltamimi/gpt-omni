@@ -1,4 +1,7 @@
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react"
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { useCopyText, useSortCode } from "./hooks"
 
 const App = () => {
   const [input, setInput] = useState('')
@@ -19,7 +22,6 @@ const App = () => {
       })
       if (response.ok) {
         const result = await response.json()
-        console.log(result.response)
         setAiResponse(result.response)
       }
     } catch (error) {
@@ -27,6 +29,27 @@ const App = () => {
     }
 
   }
+
+  // const getString = () => {
+  //   let start = aiResponse.indexOf('```')
+  //   if (start >= 0) {
+  //     start += 3
+  //     const end = aiResponse.indexOf('```', start)
+  //     if (end >= 0) {
+  //       const code = aiResponse.substring(start, end)
+  //       return code
+  //     }
+  //   }
+
+  // }
+
+  // const [language, ...rest] = getString()?.split('\n') || []
+
+  // const { isCopied, handleCopyClick } = useCopyText(rest.join('\n'))
+
+  const [aiResponseArr] = useSortCode(aiResponse)
+
+  // console.log(aiResponseArr)
 
   return (
     <main className='m-6'>
@@ -47,7 +70,21 @@ const App = () => {
           Send Prompt
         </button>
       </form>
-      <p className='block mt-8 text-xl'>{aiResponse}</p>
+      <div className='bg-[#f8f8ff] rounded-md p-4'>
+
+        <div className="flex justify-between">
+
+          {/* <h3>{language}</h3>
+          <button
+            onClick={handleCopyClick}
+          >
+            {isCopied ? 'Copied' : 'Copy code'}
+          </button> */}
+        </div>
+        <SyntaxHighlighter language="javascript" style={docco}>
+          {aiResponse}
+        </SyntaxHighlighter>
+      </div>
     </main>
   )
 }

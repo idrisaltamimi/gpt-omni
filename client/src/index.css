@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+pre {
+  font-family: monospace;
+  font-size: 1em;
+  background-color: #f5f5f5;
+  padding: 1em;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  /* ensure line breaks are preserved */
+}
+
+/* Customize Prism.js colors */
+.token.keyword {
+  color: blue;
+}
+
+.token.string {
+  color: green;
+}
