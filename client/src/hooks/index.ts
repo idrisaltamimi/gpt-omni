@@ -1,7 +1,7 @@
 import useCopyText from './useCopyText'
-import useSortCode from './useSortCode'
+import useHandleSubmit from './useHandleSubmit'
 
 export {
   useCopyText,
-  useSortCode
+  useHandleSubmit
 }
