@@ -3,10 +3,10 @@ import { useHandleSubmit } from '../hooks'
 
 const RegExr = () => {
   const [input, setInput] = useState('')
-  const { aiResponses, handleSubmit, isLoading } = useHandleSubmit(input)
+  const { aiResponse, handleSubmit, isLoading } = useHandleSubmit(input)
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label className='text-white'>
         RegExr Expression:
         <input

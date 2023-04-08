@@ -11,7 +11,7 @@ const Home = () => {
         <Link
           key={link.name}
           to={`/${link.name.toLocaleLowerCase()}`}
-          className='flex items-center justify-center gap-2 text-2xl text-white transition-all duration-200 bg-seaGreen h-28 hover:text-4xl'
+          className='flex items-center justify-center gap-2 text-2xl text-white transition-all duration-300 rounded-lg bg-gunmetal h-28 hover:scale-110 hover:bg-seaGreen'
         >
           {link.icon}
           {link.name}

@@ -9,18 +9,11 @@ const App = () => {
 
   return (
     <>
-      <header>
-        <Link to='/'>
-          <img src={logo} alt="" width={100} />
-        </Link>
-      </header>
-      <main className='m-6'>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/chat' element={<Chat />} />
-          <Route path='/regexr' element={<RegExr />} />
-        </Routes>
-      </main>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/chat' element={<Chat />} />
+        <Route path='/regexr' element={<RegExr />} />
+      </Routes>
     </>
   )
 }

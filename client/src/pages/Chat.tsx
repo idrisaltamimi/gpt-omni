@@ -11,31 +11,13 @@ const Chat = () => {
     setInput(target.value)
   }
 
-  const { aiResponses, handleSubmit, isLoading } = useHandleSubmit(input)
+  const { chat, handleSubmit, isLoading } = useHandleSubmit(input)
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          enter prompt:
-          <textarea
-            className='block px-5 py-2 border-black rounded-md border-[1px] w-[450px] max-h-[200px]'
-
-            value={input}
-            onChange={handleChange}
-          />
-        </label>
-        <button
-          className='px-6 py-3 mt-4 text-white bg-blue-600 rounded-md'
-          type='submit'
-        >
-          {isLoading ? 'Loading...' : 'Send Prompt'}
-        </button>
-      </form>
-
-      <div>
-        {aiResponses.length > 0 &&
-          aiResponses.map(el => (
+    <main className='flex flex-col justify-between h-full'>
+      <div className='w-full h-full flex-full'>
+        {chat.length > 0 &&
+          chat.map(el => (
             el.isBot ? (
               <div className='block text-blue-700'>
                 <CodeBlock text={el.text} />
@@ -46,7 +28,27 @@ const Chat = () => {
           )
         }
       </div>
-    </div>
+
+      <form onSubmit={handleSubmit} className='relative flex justify-center mt-auto'>
+        <label>
+          enter prompt:
+          <textarea
+            className='absolute opacity-0 pointer-events-none'
+            value={input}
+            onChange={handleChange}
+          />
+          <span className='w-40 h-10'>
+            {input}
+          </span>
+        </label>
+        <button
+          className='px-6 py-3 mt-4 text-white bg-blue-600 rounded-md'
+          type='submit'
+        >
+          {isLoading ? 'Loading...' : 'Send Prompt'}
+        </button>
+      </form>
+    </main>
   )
 }
 

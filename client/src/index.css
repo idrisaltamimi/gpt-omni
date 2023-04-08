@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   background-color: #1A1615;
+}
+
+#root {
+  max-width: 1440px;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 10px;
+}
+
+@media (min-width: 425px) {
+  #root {
+    padding-inline: 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  #root {
+    padding-inline: 120px;
+  }
 }
