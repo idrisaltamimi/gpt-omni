@@ -1,9 +1,14 @@
 import { useState } from 'react'
 import { FormEvent } from 'react'
 
+interface Response {
+  text: string,
+  isBot: boolean
+}
+
 const useHandleSubmit = (input: string) => {
   const [isLoading, setIsLoading] = useState(false)
-  const [aiResponses, setAiResponses] = useState<string[]>([])
+  const [aiResponses, setAiResponses] = useState<Response[]>([])
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -16,7 +21,10 @@ const useHandleSubmit = (input: string) => {
       })
       if (response.ok) {
         const result = await response.json()
-        setAiResponses(prev => [...prev, input, result.response])
+        setAiResponses(prev => [...prev,
+        { text: input, isBot: false },
+        { text: result.response, isBot: true }
+        ])
       }
     } catch (error) {
       console.log(error)

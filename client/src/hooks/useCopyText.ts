@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react'
 
-const useCopyText = (text: string) => {
+const useCopyText = () => {
   const [isCopied, setIsCopied] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | undefined>()
 
-  const handleCopyClick = () => {
+  const handleCopyClick = (text: string) => {
     navigator.clipboard.writeText(text)
 
     setIsCopied(true)

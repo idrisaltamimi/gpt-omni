@@ -1,32 +1,35 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { faComments } from '@fortawesome/free-solid-svg-icons'
+import { faAsterisk, faComments } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Home = () => {
-  const [isHovered, setIsHovered] = useState(false)
-
-  const handleHover = () => setIsHovered(true)
-  const handleUnhover = () => setIsHovered(false)
 
   return (
-    <>
+    <div className='grid grid-cols-2 gap-6 sm:grid-cols-3'>
       {links.map(link => (
         <Link
-          key={link}
-          to={`/${link}`}
-          className='flex flex-col items-center justify-center gap-2 text-2xl text-white uppercase bg-blue-500 w-28 aspect-square'
-          onMouseEnter={handleHover}
-          onMouseOut={handleUnhover}
+          key={link.name}
+          to={`/${link.name.toLocaleLowerCase()}`}
+          className='flex items-center justify-center gap-2 text-2xl text-white transition-all duration-200 bg-seaGreen h-28 hover:text-4xl'
         >
-          <FontAwesomeIcon icon={faComments} className='pointer-events-none' beat={isHovered} />
-          {link}
+          {link.icon}
+          {link.name}
         </Link>
       ))}
-    </>
+    </div>
   )
 }
 
 export default Home
 
-const links = ['chat']
+const links = [
+  { name: 'Chat', icon: <FontAwesomeIcon icon={faComments} className='pointer-events-none' /> },
+  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
+  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
+  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
+  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
+  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
+  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
+  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
+]
