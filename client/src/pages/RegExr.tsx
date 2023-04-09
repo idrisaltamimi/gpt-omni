@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { useHandleSubmit } from '../hooks'
 
 const RegExr = () => {
-  const [input, setInput] = useState('')
-  const { aiResponse, handleSubmit, isLoading } = useHandleSubmit(input)
+  const { aiResponse, handleSubmit, isLoading, input } = useHandleSubmit('text')
 
   return (
     <form onSubmit={handleSubmit}>
@@ -11,6 +10,7 @@ const RegExr = () => {
         RegExr Expression:
         <input
           type='text'
+          value={input}
           className='block w-full px-4 py-2 rounded-md'
         />
       </label>

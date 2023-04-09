@@ -6,16 +6,19 @@ export default {
   ],
   theme: {
     colors: {
-      seaGreen: '#20B2AB',
+      jungle: '#0FA37F',
       white: '#FFFFFF',
-      black: '#1A1615',
-      gunmetal: '#242B2B',
-      darkGrey: '#646061',
+      jet: '#444654',
+      charcoal: '#343541',
+      grey: '#40414f',
     },
     screens: {
       sm: '425px',
       md: '768px',
       lg: '1024px'
+    },
+    boxShadow: {
+      sm: '0 0 10px rgba(0,0,0,0.10)'
     }
   },
   plugins: [],

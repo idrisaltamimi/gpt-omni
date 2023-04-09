@@ -1,47 +1,52 @@
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ChangeEvent, ReactNode, useState } from 'react'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { monokaiSublime } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+
 import { useCopyText, useHandleSubmit } from '../hooks'
+import { Loader } from '../components'
+import { parseHtml } from '../utils'
 
 const Chat = () => {
-  const [input, setInput] = useState<string>('')
-
-  const handleChange = (e: ChangeEvent) => {
-    const target = e.target as HTMLInputElement
-    setInput(target.value)
-  }
-
-  const { chat, handleSubmit, isLoading } = useHandleSubmit(input)
+  const { chat, handleSubmit, isLoading, handleChange, input } = useHandleSubmit('textarea')
 
   return (
-    <main className='flex flex-col justify-between h-full'>
+    <main className='flex flex-col items-center justify-between h-full'>
       <div className='w-full'>
         {chat.length > 0 &&
           chat.map(el => (
-            el.isBot ? (
-              <div className='block text-blue-700'>
-                <CodeBlock text={el.text} />
-              </div>
-            ) : (
-              <p className='bg-gray-400'>{el.text}</p>
-            ))
+            <div
+              key={crypto.randomUUID()}
+              className={`${el.isBot && 'bg-gunmetal'} text-white`}
+            >
+              {el.isBot ? (
+                <div className='block max-w-[750px] mx-auto'>
+                  <CodeBlock text={el.text} />
+                </div>
+              ) : (
+                <p className='bg-gray-400 max-w-[750px] mx-auto'>{el.text}</p>
+              )}
+            </div>
+          )
           )
         }
+        <div className='max-w-[750px] mx-auto'>
+          {true && <Loader />}
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className='relative flex items-center justify-center w-full h-32 gap-3 py-10 mt-auto bg-darkGrey'>
+      <form onSubmit={handleSubmit} className='relative flex items-center justify-center w-full min-h-[50px] gap-3 my-10 mt-auto max-w-[750px]'>
         <input
           type='text'
-          className='relative z-10 max-w-[500px] w-full rounded-lg h-full px-5 shadow-[0_0_10px_5px_rgba(255,255,255,.1)]'
+          className={`relative w-full rounded-lg h-full px-5 shadow-sm bg-darkGrey text-white bg-grey outline-none hover:border-jungle border-[1px] border-grey focus:border-jungle transition-all duration-200`}
           placeholder='Send a message...'
           value={input}
           onChange={handleChange}
         />
         <button
-          className='h-full text-white transition-all duration-300 ease-in bg-blue-600 rounded-full aspect-square bg-gunmetal hover:bg-seaGreen hover:shadow-[0_0_60px_1px_seaGreen] hover:scale-110'
+          className='absolute h-full text-white transition-all duration-200 ease-in translate-y-[-50%] bg-blue-600 rounded-full outline-none aspect-square bg-darkGrey  focus:bg-jungle top-1/2 right-0 disabled:opacity-50'
           type='submit'
+          disabled={input === ''}
         >
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
@@ -60,7 +65,7 @@ const CodeBlock = ({ text }: { text: string }) => {
     <>
       {parts.map((part, index) => {
         if (index % 2 === 0) {
-          return <p key={crypto.randomUUID()}>{part}</p>
+          return <p key={crypto.randomUUID()}>{parseHtml(part)}</p>
         } else {
           return <CodeSyntax part={part} />
         }

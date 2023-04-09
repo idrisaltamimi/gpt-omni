@@ -2,28 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-#root {
-  height: 100%;
-}
+@layer base {
+  #__next {
+    @apply contents;
+  }
 
-body {
-  background-color: #1A1615;
-}
+  html {
+    @apply h-full antialiased scroll-smooth;
+  }
 
-/* #root {
-  padding-inline: 10px;
-}
+  body {
+    @apply h-full bg-charcoal;
+  }
 
-@media (min-width: 425px) {
   #root {
-    padding-inline: 50px;
+    @apply h-full;
   }
 }
-
-@media (min-width: 768px) {
-  #root {
-    padding-inline: 120px;
-  }
-} */
