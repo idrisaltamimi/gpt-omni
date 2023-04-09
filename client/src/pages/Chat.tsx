@@ -1,3 +1,5 @@
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ChangeEvent, ReactNode, useState } from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { monokaiSublime } from 'react-syntax-highlighter/dist/esm/styles/hljs'
@@ -15,7 +17,7 @@ const Chat = () => {
 
   return (
     <main className='flex flex-col justify-between h-full'>
-      <div className='w-full h-full flex-full'>
+      <div className='w-full'>
         {chat.length > 0 &&
           chat.map(el => (
             el.isBot ? (
@@ -29,23 +31,19 @@ const Chat = () => {
         }
       </div>
 
-      <form onSubmit={handleSubmit} className='relative flex justify-center mt-auto'>
-        <label>
-          enter prompt:
-          <textarea
-            className='absolute opacity-0 pointer-events-none'
-            value={input}
-            onChange={handleChange}
-          />
-          <span className='w-40 h-10'>
-            {input}
-          </span>
-        </label>
+      <form onSubmit={handleSubmit} className='relative flex items-center justify-center w-full h-32 gap-3 py-10 mt-auto bg-darkGrey'>
+        <input
+          type='text'
+          className='relative z-10 max-w-[500px] w-full rounded-lg h-full px-5 shadow-[0_0_10px_5px_rgba(255,255,255,.1)]'
+          placeholder='Send a message...'
+          value={input}
+          onChange={handleChange}
+        />
         <button
-          className='px-6 py-3 mt-4 text-white bg-blue-600 rounded-md'
+          className='h-full text-white transition-all duration-300 ease-in bg-blue-600 rounded-full aspect-square bg-gunmetal hover:bg-seaGreen hover:shadow-[0_0_60px_1px_seaGreen] hover:scale-110'
           type='submit'
         >
-          {isLoading ? 'Loading...' : 'Send Prompt'}
+          <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </form>
     </main>

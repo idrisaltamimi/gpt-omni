@@ -12,10 +12,7 @@ body {
   background-color: #1A1615;
 }
 
-#root {
-  max-width: 1440px;
-  width: 100%;
-  margin-inline: auto;
+/* #root {
   padding-inline: 10px;
 }
 
@@ -29,4 +26,4 @@ body {
   #root {
     padding-inline: 120px;
   }
-}
+} */
