@@ -6,10 +6,11 @@ export default {
   ],
   theme: {
     colors: {
+      blue: '#0F85A3',
       jungle: '#0FA37F',
       white: '#FFFFFF',
-      jet: '#444654',
-      charcoal: '#343541',
+      charcoal: '#444654',
+      jet: '#343541',
       grey: '#40414f',
     },
     screens: {
@@ -19,6 +20,9 @@ export default {
     },
     boxShadow: {
       sm: '0 0 10px rgba(0,0,0,0.10)'
+    },
+    animation: {
+      'spin': 'spin 1s ease-in infinite',
     }
   },
   plugins: [],

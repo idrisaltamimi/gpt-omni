@@ -1,56 +1,65 @@
+import { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faCircleNotch, faFingerprint, faPaperPlane, faRobot } from '@fortawesome/free-solid-svg-icons'
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import { monokaiSublime } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 import { useCopyText, useHandleSubmit } from '../hooks'
-import { Loader } from '../components'
-import { parseHtml } from '../utils'
+import { Loader, SearchForm } from '../components'
+import { formatListAndText, parseHtml } from '../utils'
 
 const Chat = () => {
-  const { chat, handleSubmit, isLoading, handleChange, input } = useHandleSubmit('textarea')
+  const componentRef = useRef<HTMLDivElement>(null)
+  const form = useHandleSubmit('textarea')
+  const { chat, isLoading, error } = form
+
+  useEffect(() => {
+    if (!isLoading) return
+    if (componentRef.current) {
+      componentRef.current.scrollTop = componentRef.current.scrollHeight
+    }
+  }, [isLoading])
 
   return (
     <main className='flex flex-col items-center justify-between h-full'>
-      <div className='w-full'>
-        {chat.length > 0 &&
+      <div className='w-full overflow-y-scroll' ref={componentRef}>
+        {chat.length > 0 && (
           chat.map(el => (
             <div
               key={crypto.randomUUID()}
-              className={`${el.isBot && 'bg-gunmetal'} text-white`}
+              className={`${el.isBot && 'bg-charcoal'} text-white py-6`}
             >
               {el.isBot ? (
-                <div className='block max-w-[750px] mx-auto'>
-                  <CodeBlock text={el.text} />
+                <div className='max-w-[750px] mx-auto flex items-baseline gap-4'>
+                  <div className='flex items-center justify-center w-8 rounded-full aspect-square bg-jungle'>
+                    <FontAwesomeIcon icon={faRobot} />
+                  </div>
+                  <div className='max-w-[702px]'>
+                    <CodeBlock text={el.text} />
+                  </div>
                 </div>
               ) : (
-                <p className='bg-gray-400 max-w-[750px] mx-auto'>{el.text}</p>
+                <div className='bg-gray-400 max-w-[750px] mx-auto flex items-baseline gap-4'>
+                  <div className='flex items-center justify-center w-8 rounded-full aspect-square bg-blue'>
+                    <FontAwesomeIcon icon={faFingerprint} />
+                  </div>
+                  <p className=''>
+                    {el.text}
+                  </p>
+                </div>
               )}
             </div>
-          )
-          )
-        }
-        <div className='max-w-[750px] mx-auto'>
-          {true && <Loader />}
+          ))
+        )}
+        <div className='w-full bg-charcoal'>
+          {isLoading && <div className='w-full bg-charcoal max-w-[750px] mx-auto py-6'><Loader /></div>}
+          {error && <div className='w-full bg-charcoal max-w-[750px] mx-auto py-6'>Something went wrong, try again later</div>}
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className='relative flex items-center justify-center w-full min-h-[50px] gap-3 my-10 mt-auto max-w-[750px]'>
-        <input
-          type='text'
-          className={`relative w-full rounded-lg h-full px-5 shadow-sm bg-darkGrey text-white bg-grey outline-none hover:border-jungle border-[1px] border-grey focus:border-jungle transition-all duration-200`}
-          placeholder='Send a message...'
-          value={input}
-          onChange={handleChange}
-        />
-        <button
-          className='absolute h-full text-white transition-all duration-200 ease-in translate-y-[-50%] bg-blue-600 rounded-full outline-none aspect-square bg-darkGrey  focus:bg-jungle top-1/2 right-0 disabled:opacity-50'
-          type='submit'
-          disabled={input === ''}
-        >
-          <FontAwesomeIcon icon={faPaperPlane} />
-        </button>
-      </form>
+      <SearchForm
+        {...form}
+      />
     </main>
   )
 }
@@ -65,7 +74,9 @@ const CodeBlock = ({ text }: { text: string }) => {
     <>
       {parts.map((part, index) => {
         if (index % 2 === 0) {
-          return <p key={crypto.randomUUID()}>{parseHtml(part)}</p>
+          return <p key={crypto.randomUUID()} className='font-medium text-[#d1d5db]'>
+            {parseHtml(formatListAndText(part))}
+          </p>
         } else {
           return <CodeSyntax part={part} />
         }
@@ -78,21 +89,30 @@ const CodeSyntax = ({ part }: { part: string }) => {
   const { isCopied, handleCopyClick } = useCopyText()
 
   return (
-    <>
+    <div className='my-6 code'>
       <button
-        className='block w-full text-right'
+        className='block w-full p-2 text-[12px] font-bold text-right uppercase bg-[#343541] rounded-t-md'
         onClick={() => handleCopyClick(part.trim())}
       >
         {isCopied ? 'Copied' : 'Copy code'}
       </button>
       <SyntaxHighlighter
         key={crypto.randomUUID()}
-        language="typescript"
-        style={monokaiSublime}
+        language='typescript'
+        style={a11yDark}
+        customStyle={codeStyles}
         wrapLongLines={true}
+        showInlineLineNumbers
       >
         {part.trim()}
       </SyntaxHighlighter>
-    </>
+    </div>
   )
+}
+
+const codeStyles = {
+  backgroundColor: '#191919',
+  padding: '16px',
+  fontSize: '14px',
+  fontWeight: 700
 }
