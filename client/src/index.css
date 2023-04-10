@@ -19,3 +19,17 @@
     @apply h-full;
   }
 }
+
+.scrollbar {
+  scrollbar-color: #444654 #343541;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #444654;
+  border: 2px solid #343541;
+  border-radius: 12px;
+}

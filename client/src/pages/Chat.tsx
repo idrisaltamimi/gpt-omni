@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleNotch, faFingerprint, faPaperPlane, faRobot } from '@fortawesome/free-solid-svg-icons'
+import { faFingerprint, faRobot } from '@fortawesome/free-solid-svg-icons'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
@@ -22,7 +22,7 @@ const Chat = () => {
 
   return (
     <main className='flex flex-col items-center justify-between h-full'>
-      <div className='w-full overflow-y-scroll' ref={componentRef}>
+      <div className='w-full overflow-y-scroll scrollbar scroll-smooth' ref={componentRef}>
         {chat.length > 0 && (
           chat.map(el => (
             <div
@@ -57,9 +57,7 @@ const Chat = () => {
         </div>
       </div>
 
-      <SearchForm
-        {...form}
-      />
+      <SearchForm {...form} />
     </main>
   )
 }
@@ -74,25 +72,25 @@ const CodeBlock = ({ text }: { text: string }) => {
     <>
       {parts.map((part, index) => {
         if (index % 2 === 0) {
-          return <p key={crypto.randomUUID()} className='font-medium text-[#d1d5db]'>
+          return <div key={crypto.randomUUID()} className='font-medium text-[#d1d5db]'>
             {parseHtml(formatListAndText(part))}
-          </p>
+          </div>
         } else {
-          return <CodeSyntax part={part} />
+          return <CodeSyntax text={part} />
         }
       })}
     </>
   )
 }
 
-const CodeSyntax = ({ part }: { part: string }) => {
+const CodeSyntax = ({ text }: { text: string }) => {
   const { isCopied, handleCopyClick } = useCopyText()
 
   return (
-    <div className='my-6 code'>
+    <div className='my-6'>
       <button
         className='block w-full p-2 text-[12px] font-bold text-right uppercase bg-[#343541] rounded-t-md'
-        onClick={() => handleCopyClick(part.trim())}
+        onClick={() => handleCopyClick(text.trim())}
       >
         {isCopied ? 'Copied' : 'Copy code'}
       </button>
@@ -104,7 +102,7 @@ const CodeSyntax = ({ part }: { part: string }) => {
         wrapLongLines={true}
         showInlineLineNumbers
       >
-        {part.trim()}
+        {text.trim()}
       </SyntaxHighlighter>
     </div>
   )
