@@ -1,20 +1,40 @@
 import { useCopyText } from '../hooks'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { formatListAndText, parseHtml } from '../utils'
+
+const AiResponse = ({ text }: { text: string }) => {
+  const codeRegex = /```([\s\S]*?)```/g
+  const parts = text.split(codeRegex)
+
+  return (
+    <div className='max-w-[702px]'>
+      {parts.map((part, index) => {
+        if (index % 2 === 0) {
+          return <div key={crypto.randomUUID()} className='font-medium text-[#d1d5db]'>
+            {parseHtml(formatListAndText(part))}
+          </div>
+        } else {
+          return <CodeBlock key={crypto.randomUUID()} text={part} />
+        }
+      })}
+    </div>
+  )
+}
 
 const CodeBlock = ({ text }: { text: string }) => {
   const { isCopied, handleCopyClick } = useCopyText()
 
   return (
-    <div className='my-6'>
+    <div className='mb-6'>
       <button
-        className='block w-full p-2 text-[12px] font-bold text-right uppercase bg-[#343541] rounded-t-md text-white'
+        className='flex justify-between w-full p-2 text-[12px] font-bold  bg-[#343541] rounded-t-md text-[#ffffff9b]'
         onClick={() => handleCopyClick(text.trim())}
       >
+        <span>bash</span>
         {isCopied ? 'Copied' : 'Copy code'}
       </button>
       <SyntaxHighlighter
-        key={crypto.randomUUID()}
         language='typescript'
         style={a11yDark}
         customStyle={codeStyles}
@@ -27,7 +47,7 @@ const CodeBlock = ({ text }: { text: string }) => {
   )
 }
 
-export default CodeBlock
+export default AiResponse
 
 const codeStyles = {
   backgroundColor: '#191919',

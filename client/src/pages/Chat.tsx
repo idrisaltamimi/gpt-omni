@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFingerprint, faRobot } from '@fortawesome/free-solid-svg-icons'
 
 import { useHandleSubmit } from '../hooks'
-import { Loader, SearchForm, CodeBlock } from '../components'
+import { Loader, SearchForm, AiResponse } from '../components'
 import { formatListAndText, parseHtml } from '../utils'
 
 const Chat = () => {
@@ -61,25 +61,6 @@ const Chat = () => {
 }
 
 export default Chat
-
-const AiResponse = ({ text }: { text: string }) => {
-  const codeRegex = /```([\s\S]*?)```/g
-  const parts = text.split(codeRegex)
-
-  return (
-    <div className='max-w-[702px]'>
-      {parts.map((part, index) => {
-        if (index % 2 === 0) {
-          return <div key={crypto.randomUUID()} className='font-medium text-[#d1d5db]'>
-            {parseHtml(formatListAndText(part))}
-          </div>
-        } else {
-          return <CodeBlock text={part} />
-        }
-      })}
-    </div>
-  )
-}
 
 const useScrollToBottom = (isLoading: boolean) => {
   const componentRef = useRef<HTMLDivElement>(null)
