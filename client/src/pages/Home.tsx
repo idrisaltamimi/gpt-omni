@@ -6,18 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Home = () => {
 
   return (
-    <div className='grid grid-cols-2 gap-6 sm:grid-cols-3'>
-      {links.map(link => (
-        <Link
-          key={link.name}
-          to={`/${link.name.toLocaleLowerCase()}`}
-          className='flex items-center justify-center gap-2 text-2xl text-white transition-all duration-300 rounded-lg bg-gunmetal h-28 hover:scale-110 hover:bg-seaGreen'
-        >
-          {link.icon}
-          {link.name}
-        </Link>
-      ))}
-    </div>
+    <main className='max-w-[1440px] w-full mx-auto px-3 sm:px-5 md:px-12 lg:px-28'>
+      <div className='grid grid-cols-2 gap-6 sm:grid-cols-3'>
+        {links.map(link => (
+          <Link
+            key={link.name}
+            to={`/${link.name.toLocaleLowerCase()}`}
+            className='flex items-center justify-center gap-2 text-2xl text-white transition-all duration-300 rounded-lg bg-charcoal h-28 hover:bg-jungle'
+          >
+            {link.icon}
+            {link.name}
+          </Link>
+        ))}
+      </div>
+    </main>
   )
 }
 
@@ -25,11 +27,5 @@ export default Home
 
 const links = [
   { name: 'Chat', icon: <FontAwesomeIcon icon={faComments} className='pointer-events-none' /> },
-  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
-  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
-  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
-  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
-  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
-  { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
   { name: 'RegExr', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
 ]

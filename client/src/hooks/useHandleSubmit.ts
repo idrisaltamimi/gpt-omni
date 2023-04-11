@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import { FormEvent } from 'react'
 
 type Response = {
@@ -6,18 +6,15 @@ type Response = {
   isBot: boolean
 }
 
-const useHandleSubmit = (type: string) => {
+const useHandleSubmit = (
+  type: string,
+  input: string,
+  setInput: (value: string) => void
+) => {
   const [isLoading, setIsLoading] = useState(false)
   const [aiResponse, setAiResponse] = useState('')
   const [chat, setChat] = useState<Response[]>([])
   const [error, setError] = useState(false)
-  const [input, setInput] = useState<string>('')
-
-
-  const handleChange = (e: ChangeEvent) => {
-    const target = e.target as HTMLInputElement
-    setInput(target.value)
-  }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -64,9 +61,7 @@ const useHandleSubmit = (type: string) => {
     aiResponse,
     handleSubmit,
     isLoading,
-    error,
-    handleChange,
-    input
+    error
   }
 }
 

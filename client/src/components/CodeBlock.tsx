@@ -8,7 +8,7 @@ const CodeBlock = ({ text }: { text: string }) => {
   return (
     <div className='my-6'>
       <button
-        className='block w-full p-2 text-[12px] font-bold text-right uppercase bg-[#343541] rounded-t-md'
+        className='block w-full p-2 text-[12px] font-bold text-right uppercase bg-[#343541] rounded-t-md text-white'
         onClick={() => handleCopyClick(text.trim())}
       >
         {isCopied ? 'Copied' : 'Copy code'}
@@ -31,6 +31,7 @@ export default CodeBlock
 
 const codeStyles = {
   backgroundColor: '#191919',
+  borderRadius: '0 0 8px 8px',
   padding: '16px',
   fontSize: '14px',
   fontWeight: 700

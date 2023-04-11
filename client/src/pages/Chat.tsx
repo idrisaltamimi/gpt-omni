@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFingerprint, faRobot } from '@fortawesome/free-solid-svg-icons'
 
@@ -7,9 +7,15 @@ import { Loader, SearchForm, CodeBlock } from '../components'
 import { formatListAndText, parseHtml } from '../utils'
 
 const Chat = () => {
-  const form = useHandleSubmit('textarea')
+  const [input, setInput] = useState<string>('')
+  const form = useHandleSubmit('textarea', input, setInput)
   const { chat, isLoading, error } = form
   const componentRef = useScrollToBottom(isLoading)
+
+  const handleChange = (e: ChangeEvent) => {
+    const target = e.target as HTMLInputElement
+    setInput(target.value)
+  }
 
   return (
     <main className='flex flex-col items-center justify-between h-full'>
@@ -45,7 +51,11 @@ const Chat = () => {
         </div>
       </div>
 
-      <SearchForm {...form} />
+      <SearchForm
+        {...form}
+        input={input}
+        handleChange={handleChange}
+      />
     </main>
   )
 }
