@@ -3,7 +3,7 @@ import { FormEvent, useState } from 'react'
 import { Response } from '../../../types'
 import { fetchData } from '../../../utils'
 
-const useHandleSubmit = (input: string, setInput: (value: string) => void) => {
+const useSubmit = (input: string, setInput: (value: string) => void) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [chat, setChat] = useState<Response[]>([])
   const [error, setError] = useState<boolean>(false)
@@ -45,4 +45,4 @@ const useHandleSubmit = (input: string, setInput: (value: string) => void) => {
   }
 }
 
-export default useHandleSubmit
+export default useSubmit

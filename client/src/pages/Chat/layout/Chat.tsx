@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFingerprint, faRobot } from '@fortawesome/free-solid-svg-icons'
 
 import { Loader, SearchForm } from '../../../components'
-import { useHandleSubmit, useScrollToBottom } from '../hooks'
+import { useSubmit, useScrollToBottom } from '../hooks'
 import AiResponse from './AiResponse'
 
 const Chat = () => {
   const [input, setInput] = useState<string>('')
-  const { chat, handleSubmit, isLoading, error } = useHandleSubmit(input, setInput)
+  const { chat, handleSubmit, isLoading, error } = useSubmit(input, setInput)
   const componentRef = useScrollToBottom(isLoading)
 
   const handleChange = (e: ChangeEvent) => {
@@ -62,6 +62,7 @@ const Chat = () => {
       </div>
 
       <SearchForm
+        id='chat'
         isLoading={isLoading}
         input={input}
         placeholder='Send a message...'

@@ -1,7 +1,7 @@
-import useHandleSubmit from './useHandleSubmit'
+import useSubmit from './useSubmit'
 import useScrollToBottom from './useScrollToBottom'
 
 export {
-  useHandleSubmit,
+  useSubmit,
   useScrollToBottom
 }

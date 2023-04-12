@@ -31,3 +31,11 @@ export function formatListAndText(input: string) {
 
   return input
 }
+
+export function getMatchedText(input: string) {
+  const regex = /{{{{(.*?)}}}}/
+  const matches = input.match(regex)
+  const extractedText = matches && matches[1] || ''
+
+  return extractedText
+}

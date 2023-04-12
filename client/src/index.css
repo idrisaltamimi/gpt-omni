@@ -28,7 +28,8 @@
   }
 }
 
-.scrollbar {
+.scrollbar,
+pre {
   scrollbar-color: #444654 #343541;
 }
 
@@ -36,7 +37,12 @@
   width: 10px;
 }
 
-.scrollbar::-webkit-scrollbar-thumb {
+pre::-webkit-scrollbar {
+  height: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb,
+pre::-webkit-scrollbar-thumb {
   background-color: #444654;
   border: 2px solid #343541;
   border-radius: 12px;
