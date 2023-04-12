@@ -1,8 +1,4 @@
-export enum Creator {
-  Me,
-  Bot
-}
-
-interface Message {
-
+export type Response = {
+  text: string,
+  isBot: boolean
 }

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Home = () => {
 
   return (
-    <main className='max-w-[1440px] w-full mx-auto px-3 sm:px-5 md:px-12 lg:px-28'>
+    <main className='section'>
       <div className='grid grid-cols-2 gap-6 sm:grid-cols-3'>
         {links.map(link => (
           <Link

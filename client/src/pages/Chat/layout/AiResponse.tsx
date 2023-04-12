@@ -1,7 +1,7 @@
-import { useCopyText } from '../hooks'
+import { useCopyText } from '../../../hooks'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import { formatListAndText, parseHtml } from '../utils'
+import { formatListAndText, parseHtml } from '../../../utils'
 
 const AiResponse = ({ text }: { text: string }) => {
   const codeRegex = /```([\s\S]*?)```/g

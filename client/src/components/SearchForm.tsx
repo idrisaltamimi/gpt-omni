@@ -5,17 +5,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 interface Props {
   isLoading: boolean
   input: string
+  placeholder: string
   handleChange: (e: ChangeEvent) => void
   handleSubmit: (e: FormEvent) => void
 }
 
-const SearchForm: FC<Props> = ({ isLoading, input, handleChange, handleSubmit }) => {
+const SearchForm: FC<Props> = ({ isLoading, input, placeholder, handleChange, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className='relative flex items-center justify-center w-full gap-3 mt-14 max-w-[750px]'>
       <input
         type='text'
         className={`relative w-full rounded-lg px-5 shadow-sm bg-darkGrey text-white bg-grey outline-none hover:border-jungle border-[1px] border-grey focus:border-jungle transition-all duration-200 h-[50px] mb-10`}
-        placeholder='Send a message...'
+        placeholder={placeholder}
         value={input}
         onChange={handleChange}
       />

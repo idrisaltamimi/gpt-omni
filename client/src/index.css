@@ -18,6 +18,14 @@
   #root {
     @apply h-full;
   }
+
+  .section {
+    @apply max-w-[1440px] w-full mx-auto px-3 sm:px-5 md:px-12 lg:px-28;
+  }
+
+  .margin {
+    @apply px-3 sm:px-5 md:px-12 lg:px-28;
+  }
 }
 
 .scrollbar {
@@ -32,4 +40,8 @@
   background-color: #444654;
   border: 2px solid #343541;
   border-radius: 12px;
+}
+
+.height {
+  height: calc(100% - 64px);
 }

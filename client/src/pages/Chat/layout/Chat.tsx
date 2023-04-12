@@ -1,15 +1,14 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFingerprint, faRobot } from '@fortawesome/free-solid-svg-icons'
 
-import { useHandleSubmit } from '../hooks'
-import { Loader, SearchForm, AiResponse } from '../components'
-import { formatListAndText, parseHtml } from '../utils'
+import { Loader, SearchForm } from '../../../components'
+import { useHandleSubmit, useScrollToBottom } from '../hooks'
+import AiResponse from './AiResponse'
 
 const Chat = () => {
   const [input, setInput] = useState<string>('')
-  const form = useHandleSubmit('textarea', input, setInput)
-  const { chat, isLoading, error } = form
+  const { chat, handleSubmit, isLoading, error } = useHandleSubmit(input, setInput)
   const componentRef = useScrollToBottom(isLoading)
 
   const handleChange = (e: ChangeEvent) => {
@@ -18,7 +17,7 @@ const Chat = () => {
   }
 
   return (
-    <main className='flex flex-col items-center justify-between h-full'>
+    <main className='flex flex-col items-center justify-between height'>
       <div className='w-full overflow-y-scroll scrollbar scroll-smooth' ref={componentRef}>
         {chat.length > 0 && (
           chat.map(el => (
@@ -26,7 +25,7 @@ const Chat = () => {
               key={crypto.randomUUID()}
               className={`${el.isBot && 'bg-charcoal'} text-white py-6`}
             >
-              <div className='max-w-[750px] mx-auto flex items-baseline gap-4'>
+              <div className='max-w-[1000px] mx-auto flex items-baseline gap-4 margin'>
                 {el.isBot ? (<>
                   <span className='flex items-center justify-center w-8 rounded-full aspect-square bg-jungle'>
                     <FontAwesomeIcon icon={faRobot} />
@@ -46,31 +45,27 @@ const Chat = () => {
         )}
 
         <div className='w-full bg-charcoal'>
-          {isLoading && <div className='w-full max-w-[750px] mx-auto py-6'><Loader /></div>}
-          {error && <div className='w-full max-w-[750px] mx-auto py-6'>Something went wrong, try again later</div>}
+          {isLoading && <div className='max-w-[1000px] mx-auto flex items-baseline gap-4 margin p-6'><Loader /></div>}
+          {error && (
+            <div className='max-w-[1000px] mx-auto flex items-baseline gap-4 margin text-white py-6'>
+              <span className='flex items-center justify-center w-8 rounded-full aspect-square bg-jungle'>
+                <FontAwesomeIcon icon={faRobot} />
+              </span>
+              Something went wrong, try again later
+            </div>
+          )}
         </div>
       </div>
 
       <SearchForm
-        {...form}
+        isLoading={isLoading}
         input={input}
+        placeholder='Send a message...'
         handleChange={handleChange}
+        handleSubmit={handleSubmit}
       />
     </main>
   )
 }
 
 export default Chat
-
-const useScrollToBottom = (isLoading: boolean) => {
-  const componentRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!isLoading) return
-    if (componentRef.current) {
-      componentRef.current.scrollTop = componentRef.current.scrollHeight
-    }
-  }, [isLoading])
-
-  return componentRef
-}

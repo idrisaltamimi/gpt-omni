@@ -1,35 +1,21 @@
-import { OpenAIApi, Configuration } from 'openai'
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors'
 import * as dotenv from 'dotenv'
 
+import chatRoute from './routes/chatRoute.js'
+
 const app: Application = express()
+
+const router = express()
 
 dotenv.config()
 app.use(cors())
 app.use(express.json())
 
-const openAi = new OpenAIApi(
-  new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  })
-)
+app.use('/api/chat', chatRoute)
 
-app.post('/', async (req: Request, res: Response) => {
-  try {
-    const content = req.body.content as string
-
-    const aiResponse = await openAi.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: content }],
-    })
-
-    const response = aiResponse.data.choices[0].message?.content
-
-    res.status(200).json({ response })
-  } catch (error) {
-    res.status(500).send(error)
-  }
+router.route('/').get((req: Request, res: Response) => {
+  res.status(200).json({ message: 'Hello from GPT-OMRI' })
 })
 
 app.listen(8000, () => console.log('Server has started on port http://localhost:8000'))
