@@ -8,14 +8,15 @@ interface Props {
   placeholder: string
   handleChange: (e: ChangeEvent) => void
   handleSubmit: (e: FormEvent) => void
+  margin?: boolean
 }
 
-const SearchForm: FC<Props> = ({ isLoading, input, placeholder, handleChange, handleSubmit }) => {
+const SearchForm: FC<Props> = ({ isLoading, input, placeholder, handleChange, handleSubmit, margin }) => {
   return (
-    <form onSubmit={handleSubmit} className='relative flex items-center justify-center w-full gap-3 mt-14 max-w-[750px]'>
+    <form onSubmit={handleSubmit} className={`relative flex items-center justify-center w-full gap-3 ${margin && 'mt-14'} max-w-[750px]`}>
       <input
         type='text'
-        className={`relative w-full rounded-lg px-5 shadow-sm bg-darkGrey text-white bg-grey outline-none hover:border-jungle border-[1px] border-grey focus:border-jungle transition-all duration-200 h-[50px] mb-10`}
+        className={`relative w-full rounded-lg px-5 shadow-sm bg-darkGrey text-white bg-grey outline-none hover:border-jungle border-2 border-grey focus:border-jungle transition-all ease-in duration-200 h-[50px] ${margin && 'mb-10'}`}
         placeholder={placeholder}
         value={input}
         onChange={handleChange}

@@ -12,6 +12,7 @@ export default {
       charcoal: '#444654',
       jet: '#343541',
       grey: '#40414f',
+      lightGrey: '#d1d5db',
     },
     screens: {
       sm: '425px',

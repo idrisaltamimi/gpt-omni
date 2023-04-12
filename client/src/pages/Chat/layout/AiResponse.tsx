@@ -11,7 +11,7 @@ const AiResponse = ({ text }: { text: string }) => {
     <div className='max-w-[702px]'>
       {parts.map((part, index) => {
         if (index % 2 === 0) {
-          return <div key={crypto.randomUUID()} className='font-medium text-[#d1d5db]'>
+          return <div key={crypto.randomUUID()} className='font-medium text-lightGrey'>
             {parseHtml(formatListAndText(part))}
           </div>
         } else {

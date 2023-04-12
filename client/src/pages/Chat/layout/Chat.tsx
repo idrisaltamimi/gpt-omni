@@ -45,7 +45,11 @@ const Chat = () => {
         )}
 
         <div className='w-full bg-charcoal'>
-          {isLoading && <div className='max-w-[1000px] mx-auto flex items-baseline gap-4 margin p-6'><Loader /></div>}
+          {isLoading && (
+            <div className='max-w-[1000px] mx-auto flex items-baseline gap-4 margin text-white py-6'>
+              <Loader />
+            </div>
+          )}
           {error && (
             <div className='max-w-[1000px] mx-auto flex items-baseline gap-4 margin text-white py-6'>
               <span className='flex items-center justify-center w-8 rounded-full aspect-square bg-jungle'>
@@ -63,6 +67,7 @@ const Chat = () => {
         placeholder='Send a message...'
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        margin
       />
     </main>
   )

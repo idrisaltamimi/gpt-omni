@@ -20,7 +20,7 @@ const useHandleSubmit = (input: string, setInput: (value: string) => void) => {
     setInput('')
 
     try {
-      const response = await fetchData('api/chat', 'POST', input)
+      const response = await fetchData('POST', input)
 
       if (!response.ok) return setIsLoading(false)
 
