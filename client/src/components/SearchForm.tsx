@@ -10,11 +10,13 @@ interface Props {
   handleChange: (e: ChangeEvent) => void
   handleSubmit: (e: FormEvent) => void
   margin?: boolean
+  button?: boolean
+  submitButton?: any
 }
 
-const SearchForm: FC<Props> = ({ isLoading, input, placeholder, handleChange, handleSubmit, margin, id }) => {
+const SearchForm: FC<Props> = ({ isLoading, input, placeholder, handleChange, handleSubmit, margin, id, button, submitButton }) => {
   return (
-    <form onSubmit={handleSubmit} className={`relative flex items-center justify-center w-full gap-3 ${margin && 'mt-14'} max-w-[750px]`}>
+    <form onSubmit={handleSubmit} className={`relative w-full ${margin && 'mt-14'} max-w-[750px]`}>
       <input
         id={id}
         type='text'
@@ -34,6 +36,16 @@ const SearchForm: FC<Props> = ({ isLoading, input, placeholder, handleChange, ha
           <FontAwesomeIcon icon={faPaperPlane} />
         )}
       </button>
+
+      {button && (
+        <button
+          type='submit'
+          onClick={handleSubmit}
+          className='block w-full px-6 py-3 mt-4 font-bold transition-all duration-200 ease-in rounded-md bg-jungle hover:bg-blue'
+        >
+          {submitButton}
+        </button>
+      )}
     </form>
   )
 }
