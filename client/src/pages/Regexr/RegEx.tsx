@@ -6,7 +6,7 @@ import { SearchForm } from '../../components'
 import { useCopyText } from '../../hooks'
 import useSubmit from './useSubmit'
 
-const RegExr = () => {
+const RegEx = () => {
   const [input, setInput] = useState<string>('')
   const [testString, setTestString] = useState('Peter Piper picked a peck of pickled peppers')
 
@@ -90,7 +90,7 @@ const RegExr = () => {
   )
 }
 
-export default RegExr
+export default RegEx
 
 const codeStyles = {
   backgroundColor: '#191919',
