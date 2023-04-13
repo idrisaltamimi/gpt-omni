@@ -1,6 +1,6 @@
-import Chat from './Chat/layout/Chat'
+import Chat from './Chat/Chat'
 import Home from './Home'
-import RegExr from './Regexr/layout/RegExr'
+import RegExr from './Regexr/RegExr'
 
 export {
   Chat,

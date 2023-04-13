@@ -25,7 +25,8 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/chat' element={<Chat />} />
-        <Route path='/regexr' element={<RegExr />} />
+        <Route path='/regex' element={<RegExr />} />
+        <Route path='/json' element={<RegExr />} />
       </Routes>
     </>
   )

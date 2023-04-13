@@ -2,10 +2,9 @@ import { ChangeEvent, useState } from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
-import { SearchForm } from '../../../components'
-import { useCopyText } from '../../../hooks'
-import { getMatchedText } from '../../../utils'
-import { useSubmit } from '../hooks'
+import { SearchForm } from '../../components'
+import { useCopyText } from '../../hooks'
+import useSubmit from './useSubmit'
 
 const RegExr = () => {
   const [input, setInput] = useState<string>('')
@@ -27,7 +26,7 @@ const RegExr = () => {
   const regex = new RegExp(response?.split('/')[1], 'g')
 
   return (
-    <main className='flex items-center justify-between h-full text-white section height'>
+    <main className='flex flex-col items-center justify-between h-full gap-10 py-10 text-white md:flex-row section height'>
       <div className='flex flex-col items-start w-full gap-10 max-w-[550px] whitespace-nowrap'>
         <div className='w-full whitespace-normal'>
           <label htmlFor='regex'>write me a javascript regular expression that:</label>
@@ -80,7 +79,7 @@ const RegExr = () => {
           </SyntaxHighlighter>
         </div>
 
-        <div className='flex flex-col items-start w-full gap-2 mt-10 font-semibold text-lightGrey'>
+        <div className='flex flex-col items-start w-full gap-2 mt-10 mb-10 font-semibold text-lightGrey'>
           Output:
           <span className='w-full px-4 py-2 text-base font-bold text-left rounded-md bg-charcoal'>
             {testString.replace(response === '' ? /b/g : regex, '')}

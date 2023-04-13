@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react'
 
-import { Response } from '../../../types'
-import { fetchData } from '../../../utils'
+import { Response } from '../../types'
+import { fetchData } from '../../utils'
 
 const useSubmit = (input: string, setInput: (value: string) => void) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)

@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { fetchData } from '../../../utils'
+import { fetchData } from '../../utils'
 
 const useSubmit = (input: string) => {
   const [response, setResponse] = useState<string>('')

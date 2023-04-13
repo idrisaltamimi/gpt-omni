@@ -2,9 +2,8 @@ import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFingerprint, faRobot } from '@fortawesome/free-solid-svg-icons'
 
-import { Loader, SearchForm } from '../../../components'
-import { useSubmit, useScrollToBottom } from '../hooks'
-import AiResponse from './AiResponse'
+import { Loader, SearchForm } from '../../components'
+import { useSubmit, useScrollToBottom, AiResponse } from './'
 
 const Chat = () => {
   const [input, setInput] = useState<string>('')
