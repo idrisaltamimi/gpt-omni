@@ -17,10 +17,10 @@ export default {
     screens: {
       sm: '425px',
       md: '768px',
-      lg: '1024px'
+      lg: '1024px',
     },
     boxShadow: {
-      sm: '0 0 10px rgba(0,0,0,0.10)'
+      sm: '0 0 10px rgba(0,0,0,0.10)',
     },
     animation: {
       'spin': 'spin 1s ease-in infinite',

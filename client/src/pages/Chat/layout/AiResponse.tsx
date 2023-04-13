@@ -12,7 +12,7 @@ const AiResponse = ({ text }: { text: string }) => {
       {parts.map((part, index) => {
         if (index % 2 === 0) {
           return <div key={crypto.randomUUID()} className='font-medium text-lightGrey'>
-            {parseHtml(formatListAndText(part))}
+            {typeof parseHtml(formatListAndText(part)) !== 'string' ? part : parseHtml(formatListAndText(part))}
           </div>
         } else {
           return <CodeBlock key={crypto.randomUUID()} text={part} />
@@ -28,7 +28,7 @@ const CodeBlock = ({ text }: { text: string }) => {
   return (
     <div className='mb-6'>
       <button
-        className='flex justify-between w-full p-2 text-[12px] font-bold  bg-[#343541] rounded-t-md text-[#ffffff9b]'
+        className='flex justify-between w-full p-2 text-[12px] font-bold  bg-jet rounded-t-md text-[#ffffff9b]'
         onClick={() => handleCopyClick(text.trim())}
       >
         <span>bash</span>

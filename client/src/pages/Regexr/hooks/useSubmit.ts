@@ -14,7 +14,7 @@ const useSubmit = (input: string) => {
 
     try {
       const response = await fetchData('POST',
-        `write me a javascript regular expression that ${input} as a literal without variable declaration. and place it between {{{{regexr code}}}}`
+        `write me a javascript regular expression that ${input} as a literal without variable declaration. Return only the RegExp literal with no a code or descriptions`
       )
 
       if (!response.ok) return setError(true); setIsLoading(false)

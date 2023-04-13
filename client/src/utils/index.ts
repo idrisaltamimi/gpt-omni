@@ -32,10 +32,10 @@ export function formatListAndText(input: string) {
   return input
 }
 
-export function getMatchedText(input: string) {
-  const regex = /{{{{(.*?)}}}}/
-  const matches = input.match(regex)
-  const extractedText = matches && matches[1] || ''
+export function getMatchedText(input: string, regex: RegExp) {
+  const regExr = regex
+  const matches = input.match(regExr)
+  const extractedText = matches && new RegExp(matches[1]) || ''
 
-  return extractedText
+  return extractedText as RegExp
 }

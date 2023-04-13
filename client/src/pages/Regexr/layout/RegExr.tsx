@@ -9,7 +9,7 @@ import { useSubmit } from '../hooks'
 
 const RegExr = () => {
   const [input, setInput] = useState<string>('')
-  const [testString, setTestString] = useState('The quick brown fox jumped over the lazy dog. The cat in the hat wore a red bowtie. She sells sea shells by the seashore. Peter Piper picked a peck of pickled peppers. How can a clam cram in a clean cream can?')
+  const [testString, setTestString] = useState('Peter Piper picked a peck of pickled peppers')
 
   const { response, isLoading, error, handleSubmit } = useSubmit(input)
   const { handleCopyClick, isCopied } = useCopyText()
@@ -23,6 +23,8 @@ const RegExr = () => {
     const target = e.target as HTMLInputElement
     setTestString(target.value)
   }
+
+  const regex = new RegExp(response?.split('/')[1], 'g')
 
   return (
     <main className='flex items-center justify-between h-full text-white section height'>
@@ -42,11 +44,11 @@ const RegExr = () => {
         <div className='flex flex-col items-start w-full gap-4 font-semibold sm:items-center sm:flex-row text-lightGrey'>
           Generated RegEx:
           <button
-            onClick={() => handleCopyClick(getMatchedText(response))}
-            disabled={response === '' || getMatchedText(response) === ''}
+            onClick={() => handleCopyClick(response)}
+            disabled={response === '' || response === ''}
             className='relative h-[50px] w-full text-xl font-bold rounded-md bg-charcoal flex justify-center items-center max-w-[400px]'
           >
-            {getMatchedText(response)}
+            {response}
             <span className='absolute top-0 translate-y-[-80%] right-0 text-[12px]'>{isCopied ? 'Copied' : 'Click to copy'}</span>
           </button>
         </div>
@@ -63,16 +65,27 @@ const RegExr = () => {
         </div>
       </div>
 
-      <div className='max-w-[600px] w-full'>
-        <SyntaxHighlighter
-          language='javascript'
-          style={a11yDark}
-          customStyle={codeStyles}
-          wrapLongLines={true}
-          showInlineLineNumbers={true}
-        >
-          {`const regex = ${getMatchedText(response) === '' ? '/b/g' : getMatchedText(response)} \nconst testString = ${testString} \nconst matches = testString.match(regex) \n\nconsole.log(matches)`}
-        </SyntaxHighlighter>
+      <div className='max-w-[600px] w-full font-semibold text-lightGrey'>
+        Test RegEx:
+        <div className='w-full max-h-[250px]'>
+          <span className='block w-full bg-charcoal text-[12px] font-semibold p-2 rounded-t-md'>JavaScript</span>
+          <SyntaxHighlighter
+            language='javascript'
+            style={a11yDark}
+            customStyle={codeStyles}
+            wrapLongLines={true}
+            showInlineLineNumbers={true}
+          >
+            {`const regex = ${response === '' ? '/b/g' : response} \nconst testString = ${testString} \nconst matches = testString.replace(regex, '') \n\nconsole.log(matches)`}
+          </SyntaxHighlighter>
+        </div>
+
+        <div className='flex flex-col items-start w-full gap-2 mt-10 font-semibold text-lightGrey'>
+          Output:
+          <span className='w-full px-4 py-2 text-base font-bold text-left rounded-md bg-charcoal'>
+            {testString.replace(response === '' ? /b/g : regex, '')}
+          </span>
+        </div>
       </div>
     </main>
   )
