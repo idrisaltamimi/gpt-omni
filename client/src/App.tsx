@@ -3,7 +3,7 @@ import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { Chat, Home, RegEx } from './pages'
+import { Chat, Home, Json, RegEx } from './pages'
 
 const App = () => {
   const location = useLocation()
@@ -26,7 +26,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/regex' element={<RegEx />} />
-        <Route path='/json' element={<RegEx />} />
+        <Route path='/json' element={<Json />} />
       </Routes>
     </>
   )

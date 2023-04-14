@@ -1,9 +1,11 @@
-import Chat from './Chat/Chat'
-import Home from './Home'
-import RegEx from './RegEx/RegEx'
+import Chat from './Chat/main'
+import Home from './Home/main'
+import RegEx from './RegEx/main'
+import Json from './Json/main'
 
 export {
   Chat,
   Home,
   RegEx,
+  Json
 }

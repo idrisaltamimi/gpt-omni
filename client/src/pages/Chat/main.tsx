@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFingerprint, faRobot } from '@fortawesome/free-solid-svg-icons'
 
 import { Loader, SearchForm } from '../../components'
-import { useSubmit, useScrollToBottom, AiResponse } from './'
+import { useSubmit, useScrollToBottom, AiResponse } from '.'
 
 const Chat = () => {
   const [input, setInput] = useState<string>('')
