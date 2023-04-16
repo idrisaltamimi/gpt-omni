@@ -1,6 +1,5 @@
 import { FC } from 'react'
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { CodeBlock } from '../../components'
 
 interface Props {
   response: string
@@ -15,15 +14,9 @@ const TestCode: FC<Props> = ({ response, testString }) => {
       Test RegEx:
       <div className='w-full max-h-[250px] mt-4'>
         <span className='block w-full bg-charcoal text-[12px] font-semibold p-2 rounded-t-md'>JavaScript</span>
-        <SyntaxHighlighter
-          language='javascript'
-          style={a11yDark}
-          customStyle={codeStyles}
-          wrapLongLines={true}
-          showInlineLineNumbers={true}
-        >
+        <CodeBlock>
           {`const regex = ${response === '' ? '/b/g' : response} \nconst testString = ${testString} \nconst string = testString.replace(regex, '') \n\nconsole.log(string)`}
-        </SyntaxHighlighter>
+        </CodeBlock>
       </div>
 
       <div className='flex flex-col items-start w-full gap-2 mt-10 mb-10 font-semibold text-lightGrey'>
@@ -37,11 +30,3 @@ const TestCode: FC<Props> = ({ response, testString }) => {
 }
 
 export default TestCode
-
-const codeStyles = {
-  backgroundColor: '#191919',
-  borderRadius: '0 0 8px 8px',
-  padding: '24px',
-  fontSize: '14px',
-  fontWeight: 700,
-}
