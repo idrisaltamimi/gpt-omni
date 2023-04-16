@@ -28,5 +28,5 @@ const links = [
   { name: 'Chat', icon: <FontAwesomeIcon icon={faComments} className='pointer-events-none' /> },
   { name: 'RegEx', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
   { name: 'json', icon: <span className='pointer-events-none'>{'{...}'}</span> },
-  // { name: 'math', icon: <FontAwesomeIcon icon={faCalculator} className='pointer-events-none' /> },
+  { name: 'recipe', icon: <FontAwesomeIcon icon={faCalculator} className='pointer-events-none' /> },
 ]

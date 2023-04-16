@@ -32,4 +32,23 @@ app.post('/', async (req: Request, res: Response) => {
   }
 })
 
+app.post('/dalle', async (req: Request, res: Response) => {
+  try {
+    const content = req.body.content as string
+
+    const aiResponse = await openAi.createImage({
+      prompt: content,
+      n: 2,
+      size: '256x256',
+    })
+
+    const image = aiResponse.data.data
+
+    res.status(200).json({ photo: image })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(error?.response.data.error.message)
+  }
+})
+
 app.listen(8000, () => console.log('Server has started on port http://localhost:8000'))
