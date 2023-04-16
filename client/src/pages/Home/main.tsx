@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { faAsterisk, faComments, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import { faAsterisk, faCalculator, faComments, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Home = () => {
@@ -29,4 +29,5 @@ const links = [
   { name: 'Chat', icon: <FontAwesomeIcon icon={faComments} className='pointer-events-none' /> },
   { name: 'RegEx', icon: <FontAwesomeIcon icon={faAsterisk} className='pointer-events-none' /> },
   { name: 'json', icon: <span className='pointer-events-none'>{'{...}'}</span> },
+  { name: 'math', icon: <FontAwesomeIcon icon={faCalculator} className='pointer-events-none' /> },
 ]
