@@ -7,7 +7,7 @@ export function parseHtml(text: string) {
 }
 
 export function fetchData(method: string, input: string, endpoint?: string) {
-  return fetch(`http://localhost:8000${endpoint}`, {
+  return fetch(`http://localhost:8000${endpoint || ''}`, {
     method: method,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ content: input })

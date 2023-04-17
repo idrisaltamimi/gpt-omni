@@ -38,7 +38,7 @@ app.post('/dalle', async (req: Request, res: Response) => {
 
     const aiResponse = await openAi.createImage({
       prompt: content,
-      n: 2,
+      n: 1,
       size: '256x256',
     })
 
