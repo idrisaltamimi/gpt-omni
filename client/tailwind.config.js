@@ -13,6 +13,7 @@ export default {
       jet: '#343541',
       grey: '#40414f',
       lightGrey: '#d1d5db',
+      loadingGrey: '#BAC0C9'
     },
     screens: {
       sm: '425px',
@@ -24,6 +25,7 @@ export default {
     },
     animation: {
       'spin': 'spin 1s ease-in infinite',
+      'pulse': 'pulse 3s ease-in infinite',
     }
   },
   plugins: [],
