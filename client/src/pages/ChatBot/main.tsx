@@ -1,17 +1,11 @@
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 
-import { SearchForm } from '../../components'
-import { useSubmit, useScrollToBottom, ChatLoading, Chat } from '.'
+import { useSubmit, useScrollToBottom, ChatLoading, Chat, ChatForm } from '.'
 
 const ChatBot = () => {
   const [input, setInput] = useState<string>('')
   const { chat, handleSubmit, isLoading, error } = useSubmit(input, setInput)
   const componentRef = useScrollToBottom(isLoading)
-
-  const handleChange = (e: ChangeEvent) => {
-    const target = e.target as HTMLInputElement
-    setInput(target.value)
-  }
 
   return (
     <main className='flex flex-col items-center justify-between height'>
@@ -20,14 +14,11 @@ const ChatBot = () => {
         <ChatLoading error={error} isLoading={isLoading} />
       </div>
 
-      <SearchForm
-        id='chat'
+      <ChatForm
         isLoading={isLoading}
         input={input}
-        placeholder='Send a message...'
-        handleChange={handleChange}
+        setInput={setInput}
         handleSubmit={handleSubmit}
-        margin
       />
     </main>
   )
