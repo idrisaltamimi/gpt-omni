@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { CodeBlock } from '../../components'
 import ErrorBoundary from '../../ErrorBoundary'
 
-import { TestCode, GeneratedRegex, TestString, RegexForm } from './'
+import { TestCode, GeneratedRegex, TestString, RegexForm, ErrorHandler } from './'
 import useSubmit from './useSubmit'
 
 const RegEx = () => {
@@ -19,7 +20,7 @@ const RegEx = () => {
         </div>
 
         <div className='w-full font-bold text-lightGrey basis-full'>
-          <ErrorBoundary fallback='Something went wrong'>
+          <ErrorBoundary fallback={<ErrorHandler />}>
             <TestCode response={response} testString={testString} />
           </ErrorBoundary>
         </div>
