@@ -1,20 +1,21 @@
 import { OpenAIApi, Configuration } from 'openai'
-import express, { Application, Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
 import * as dotenv from 'dotenv'
-import path from 'path';
+import path from 'path'
 
 const app: Application = express()
+const __filename = import.meta.url
+const __dirname = path.dirname(__filename)
 
 dotenv.config()
 app.use(cors())
 app.use(express.json())
-
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')))
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build/index.html'));
-});
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+})
 
 const openAi = new OpenAIApi(
   new Configuration({
