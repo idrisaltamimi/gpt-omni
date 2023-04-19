@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { LinkCard } from './'
 
 const Home = () => {
-  const [currentCard, setCurrentCard] = useState<string>('Chat')
+  const [currentCard, setCurrentCard] = useState<string>(localStorage.getItem('card') || 'Chat')
 
   const toggleCard = (value: string) => {
     setCurrentCard(value)
+    localStorage.setItem('card', value)
     if (value === currentCard) {
+      localStorage.setItem('card', '')
       setCurrentCard('')
     }
   }
