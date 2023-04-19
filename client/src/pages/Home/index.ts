@@ -1,5 +1,9 @@
-import Links from './Links'
+import LinkCard from './LinkCard'
+import CardHeading from './CardHeading'
+import CardContent from './CardContent'
 
 export {
-  Links
+  LinkCard,
+  CardHeading,
+  CardContent
 }
