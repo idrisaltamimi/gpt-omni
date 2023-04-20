@@ -1,5 +1,5 @@
 import { OpenAIApi, Configuration } from 'openai'
-import express, { Application, Request, Response } from 'express'
+import express, { Application, Request, Response } from 'express';
 import cors from 'cors'
 import * as dotenv from 'dotenv'
 
@@ -49,6 +49,10 @@ app.post('/dalle', async (req: Request, res: Response) => {
     console.log(error)
     res.status(500).send(error?.response.data.error.message)
   }
+})
+
+app.get('/', (req, res) => {
+  res.send('Hello from GPT-OMNI!')
 })
 
 app.listen(8000, () => console.log('Server has started on port http://localhost:8000'))
