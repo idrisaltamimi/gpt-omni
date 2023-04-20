@@ -16,8 +16,6 @@ const openAi = new OpenAIApi(
 )
 
 app.post('/', async (req: Request, res: Response) => {
-  res.header("Access-Control-Allow-Origin", "*")
-
   try {
     const content = req.body.content as string
 
@@ -35,8 +33,6 @@ app.post('/', async (req: Request, res: Response) => {
 })
 
 app.post('/dalle', async (req: Request, res: Response) => {
-  res.header("Access-Control-Allow-Origin", "*")
-
   try {
     const content = req.body.content as string
 
