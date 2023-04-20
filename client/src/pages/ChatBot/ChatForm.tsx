@@ -21,7 +21,7 @@ const ChatForm: FC<Props> = ({ isLoading, input, setInput, handleSubmit }) => {
       <input
         id='chat'
         type='text'
-        className={`relative w-full rounded-lg px-5 shadow-sm text-white bg-grey outline-none hover:border-jungle border-2 border-grey focus:border-jungle transition-all ease-in duration-200 h-[50px] mb-4 md:mb-10`}
+        className={`relative w-full rounded-lg px-5 shadow-sm text-white bg-grey outline-none hover:border-jungle border-2 border-grey focus:border-jungle transition-all ease-in duration-200 h-[50px] mb-4`}
         placeholder='Send a message...'
         value={input}
         onChange={handleChange}
