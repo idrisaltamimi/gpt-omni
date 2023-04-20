@@ -6,7 +6,7 @@ const Header = () => {
   const navigate = useNavigate()
 
   return (
-    <header className='flex items-center h-16 shadow-sm'>
+    <header className='relative z-50 flex items-center h-16 shadow-sm'>
       <div className='section'>
         <button
           onClick={() => navigate(-1)}
