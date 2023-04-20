@@ -2,32 +2,12 @@ import { OpenAIApi, Configuration } from 'openai'
 import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
 import * as dotenv from 'dotenv'
-import path from 'path'
 
 const app: Application = express()
-const __filename = import.meta.url
-const __dirname = path.dirname(__filename)
-
-const originList = ['https://gpt-omni.netlify.app', 'http://localhost:5173']
-
-const corsOptions = {
-  origin: originList,
-  optionsSuccessStatus: 200
-}
 
 dotenv.config()
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(express.json())
-app.use(express.static(path.join(__dirname, '../../client/build')))
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
-})
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../client/build', 'index.html'))
-})
 
 const openAi = new OpenAIApi(
   new Configuration({
