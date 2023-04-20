@@ -17,11 +17,11 @@ const ChatForm: FC<Props> = ({ isLoading, input, setInput, handleSubmit }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`relative w-full my-14 max-w-[750px]`}>
+    <form onSubmit={handleSubmit} className={`relative w-full md:my-14 max-w-[750px] px-2`}>
       <input
         id='chat'
         type='text'
-        className={`relative w-full rounded-lg px-5 shadow-sm text-white bg-grey outline-none hover:border-jungle border-2 border-grey focus:border-jungle transition-all ease-in duration-200 h-[50px] mb-10`}
+        className={`relative w-full rounded-lg px-5 shadow-sm text-white bg-grey outline-none hover:border-jungle border-2 border-grey focus:border-jungle transition-all ease-in duration-200 h-[50px] mb-4 md:mb-10`}
         placeholder='Send a message...'
         value={input}
         onChange={handleChange}
