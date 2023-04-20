@@ -7,7 +7,7 @@ export function parseHtml(text: string) {
 }
 
 export function fetchData(method: string, input: string, endpoint?: string) {
-  return fetch(`https://gpt-omni.onrender.com${endpoint || ''}`, {
+  return fetch(`gpt-omni-production.up.railway.app${endpoint || ''}`, {
     method: method,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ content: input })
