@@ -9,7 +9,10 @@ export function parseHtml(text: string) {
 export function fetchData(method: string, input: string, endpoint?: string) {
   return fetch(`https://pleasant-crow-garb.cyclic.app${endpoint || ''}`, {
     method: method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    },
     body: JSON.stringify({ content: input })
   })
 }
