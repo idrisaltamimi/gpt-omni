@@ -5,13 +5,14 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import ErrorBoundary from './ErrorBoundary'
 import { LoadingFallback } from './components'
 
-const Header = lazyImport('./components', 'Header')
-const Home = lazyImport('./pages', 'Home')
-const ChatBot = lazyImport('./pages', 'ChatBot')
-const RegEx = lazyImport('./pages', 'RegEx')
-const Json = lazyImport('./pages', 'Json')
-const Recipe = lazyImport('./pages', 'Recipe')
-const ErrorFallback = lazyImport('./components', 'ErrorFallback')
+
+const Header = lazy(() => import('./components/Header'));
+const Home = lazy(() => import('./pages/Home/main'))
+const ChatBot = lazy(() => import('./pages/ChatBot/main'))
+const RegEx = lazy(() => import('./pages/RegEx/main'))
+const Json = lazy(() => import('./pages/Json/main'))
+const Recipe = lazy(() => import('./pages/Recipe/main'))
+const ErrorFallback = lazy(() => import('./components/ErrorFallback'))
 
 const App = () => {
   const fallback = <LoadingFallback />
@@ -37,10 +38,10 @@ const App = () => {
 
 export default App
 
-function lazyImport(moduleName: string, exportedName: string) {
-  return lazy(() =>
-    import(moduleName).then((module) => ({
-      default: module[exportedName],
-    }))
-  )
-}
+// function lazyImport(moduleName: string, exportedName: string) {
+//   return lazy(() =>
+//     import(moduleName).then((module) => ({
+//       default: module[exportedName],
+//     }))
+//   )
+// }
