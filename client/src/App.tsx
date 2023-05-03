@@ -37,11 +37,3 @@ const App = () => {
 }
 
 export default App
-
-// function lazyImport(moduleName: string, exportedName: string) {
-//   return lazy(() =>
-//     import(moduleName).then((module) => ({
-//       default: module[exportedName],
-//     }))
-//   )
-// }
