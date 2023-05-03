@@ -20,8 +20,8 @@ const App = () => {
 
   return (
     <>
-      {path !== '/' && <Suspense><Header /></Suspense>}
       <ErrorBoundary fallback={<Suspense fallback={fallback}><ErrorFallback /></Suspense>}>
+        {path !== '/' && <Suspense><Header /></Suspense>}
         <Routes>
           <Route path='/' element={<Suspense fallback={fallback}><Home /></Suspense>} />
           <Route path='/chat' element={<Suspense fallback={fallback}><ChatBot /></Suspense>} />
